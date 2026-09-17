@@ -1,31 +1,29 @@
-/* Desktop visibility fix: keep atmospheric animation visible above the hero glass while keeping UI clickable/readable. */
+/* Desktop visibility fix: atmospheric animation stays visible above the hero glass while UI remains readable. */
 .weather-scene {
   z-index: 3 !important;
   opacity: 0.95 !important;
-  mix-blend-mode: screen;
+  mix-blend-mode: screen !important;
 }
 
-/* Keep the main interface readable above the atmosphere. */
 .header,
 .container {
-  position: relative;
-  z-index: 4;
+  position: relative !important;
+  z-index: 4 !important;
 }
 
 .hero-content,
 .hero-visual {
-  position: relative;
-  z-index: 5;
+  position: relative !important;
+  z-index: 5 !important;
 }
 
 .results,
 .loading-card,
 .welcome-card {
-  position: relative;
-  z-index: 6;
+  position: relative !important;
+  z-index: 6 !important;
 }
 
-/* Extra desktop-only motion inside the hero visual. */
 .hero-visual::before {
   content: "";
   position: absolute;
@@ -39,6 +37,7 @@
   opacity: .72;
   animation: desktopSunPulse 4.5s ease-in-out infinite;
   pointer-events: none;
+  z-index: 0;
 }
 
 .hero-visual::after {
@@ -54,6 +53,7 @@
   opacity: .62;
   animation: desktopCloudFloat 9s ease-in-out infinite alternate;
   pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes desktopSunPulse {
@@ -69,11 +69,11 @@
 @media (max-width: 800px) {
   .weather-scene {
     z-index: 1 !important;
-    mix-blend-mode: normal;
+    mix-blend-mode: normal !important;
   }
 
   .header,
   .container {
-    z-index: 2;
+    z-index: 2 !important;
   }
 }
