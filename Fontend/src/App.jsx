@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import "./WeatherEffects.css";
 import "./WeatherMap.css";
@@ -14,6 +14,7 @@ function App() {
   const getWeather = async (cityOverride = null) => {
     const searchCity = (cityOverride ?? city).trim();
     if (!searchCity) { setError("Please enter a city name."); return; }
+    if (!API_URL) { setError("Weather API URL is not configured."); return; }
     setLoading(true); setError(""); setWeather(null);
     try {
       const response = await fetch(`${API_URL}/weather/${encodeURIComponent(searchCity)}`);
@@ -106,23 +107,31 @@ function WeatherMap({ weather }) {
   const city = weather?.city || "";
   const country = weather?.country || "";
 
-  const loadMap = async () => {
-    if (!city) return;
-    setMapLoading(true); setMapError("");
-    try {
-      const query = encodeURIComponent(`${city}${country ? `, ${country}` : ""}`);
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=${query}`, {headers:{Accept:"application/json"}});
-      const results = await response.json();
-      if (!results.length) throw new Error("Location not found on map.");
-      setCoords({lat:Number(results[0].lat),lon:Number(results[0].lon),display:results[0].display_name});
-    } catch (err) { setMapError(err.message || "Map location could not be loaded."); }
-    finally { setMapLoading(false); }
-  };
+  useEffect(() => {
+    let cancelled = false;
+    const loadMap = async () => {
+      if (!city) { setMapLoading(false); return; }
+      setMapLoading(true);
+      setMapError("");
+      setCoords(null);
+      try {
+        const query = encodeURIComponent(`${city}${country ? `, ${country}` : ""}`);
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q=${query}`, { headers: { Accept: "application/json" } });
+        if (!response.ok) throw new Error("Map service is temporarily unavailable.");
+        const results = await response.json();
+        if (!results.length) throw new Error("Location not found on map.");
+        if (!cancelled) setCoords({ lat: Number(results[0].lat), lon: Number(results[0].lon), display: results[0].display_name });
+      } catch (err) {
+        if (!cancelled) setMapError(err.message || "Map location could not be loaded.");
+      } finally {
+        if (!cancelled) setMapLoading(false);
+      }
+    };
+    loadMap();
+    return () => { cancelled = true; };
+  }, [city, country]);
 
-  // Resolve only when the weather city changes; this avoids unnecessary geocoding requests.
   const key = `${city}-${country}`;
-  if (city && !coords && !mapError && mapLoading) loadMap();
-  if (coords && `${coords.cityKey || ""}` !== key) { /* next search remounts this keyed component */ }
 
   if (!coords && mapLoading) return <section className="weather-map-section"><div className="weather-map-head"><div><div className="weather-map-kicker">LOCATION INTELLIGENCE</div><h2>Live City Map</h2><p>Finding {city} on OpenStreetMap…</p></div><div className="map-live"><span/> Mapping</div></div><div className="weather-map-wrap" style={{display:"grid",placeItems:"center",color:"#8da7ba"}}>🗺️ Loading interactive map…</div></section>;
   if (!coords) return <section className="weather-map-section"><div className="weather-map-head"><div><div className="weather-map-kicker">LOCATION INTELLIGENCE</div><h2>Live City Map</h2><p>{mapError}</p></div></div></section>;
