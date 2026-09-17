@@ -11,7 +11,6 @@
 .creator-footer-content a { transition:color .2s ease,transform .2s ease; }
 .creator-footer-content a:hover { color:#55c5ff; transform:translateY(-1px); }
 
-/* Professional footer icons — fixed size so they never look oversized */
 .footer-icon,.footer-person-icon,.footer-linkedin-icon { flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; }
 .footer-icon svg,.footer-person-icon svg { display:block; width:17px; height:17px; }
 .footer-person-icon { width:19px; height:19px; color:#55c5ff; }
@@ -24,10 +23,10 @@
 .location-heading,.section-heading,.weather-map-head { gap:18px; }
 .detail-card,.prediction-card,.forecast-card { transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease; }
 .detail-card:hover,.prediction-card:hover,.forecast-card:hover { transform:translateY(-3px); }
-.weather-map-section { overflow:hidden; }
-.weather-map-wrap { min-height:390px; border-radius:20px; overflow:hidden; }
-.leaflet-weather-map { min-height:390px; }
-.map-temp-card { max-width:245px; }
+
+/* Weather map removed from the visible UI */
+.weather-map-section { display:none !important; }
+
 .status-badge,.ai-badge { min-height:34px; padding:7px 11px; }
 .search-box button { min-height:48px; }
 
@@ -41,7 +40,6 @@
 @media (max-width:900px) {
   .creator-footer { width:calc(100% - 32px); }
   .creator-footer-content { justify-content:center; }
-  .weather-map-wrap,.leaflet-weather-map { min-height:340px; }
 }
 
 @media (max-width:600px) {
@@ -62,7 +60,6 @@
   .footer-icon svg { width:15px; height:15px; }
   .footer-person-icon svg { width:16px; height:16px; }
   .footer-linkedin-icon { font-size:9px !important; line-height:16px !important; }
-  .weather-map-wrap,.leaflet-weather-map { min-height:300px; }
 }
 
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; } }
