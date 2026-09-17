@@ -1,0 +1,79 @@
+/* Desktop visibility fix: keep atmospheric animation visible above the hero glass while keeping UI clickable/readable. */
+.weather-scene {
+  z-index: 3 !important;
+  opacity: 0.95 !important;
+  mix-blend-mode: screen;
+}
+
+/* Keep the main interface readable above the atmosphere. */
+.header,
+.container {
+  position: relative;
+  z-index: 4;
+}
+
+.hero-content,
+.hero-visual {
+  position: relative;
+  z-index: 5;
+}
+
+.results,
+.loading-card,
+.welcome-card {
+  position: relative;
+  z-index: 6;
+}
+
+/* Extra desktop-only motion inside the hero visual. */
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  right: 12%;
+  top: 18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,245,160,.95) 0%, rgba(255,193,55,.45) 35%, transparent 70%);
+  filter: blur(1px);
+  opacity: .72;
+  animation: desktopSunPulse 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  width: 310px;
+  height: 105px;
+  right: -5%;
+  bottom: 12%;
+  border-radius: 100px;
+  background: linear-gradient(180deg, rgba(225,245,255,.25), rgba(120,165,200,.04));
+  filter: blur(2px);
+  opacity: .62;
+  animation: desktopCloudFloat 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes desktopSunPulse {
+  0%,100% { transform: scale(.92); opacity: .48; }
+  50% { transform: scale(1.08); opacity: .9; }
+}
+
+@keyframes desktopCloudFloat {
+  from { transform: translateX(35px) translateY(4px); }
+  to { transform: translateX(-70px) translateY(-10px); }
+}
+
+@media (max-width: 800px) {
+  .weather-scene {
+    z-index: 1 !important;
+    mix-blend-mode: normal;
+  }
+
+  .header,
+  .container {
+    z-index: 2;
+  }
+}
