@@ -47,14 +47,14 @@ export default function App() {
   return (
     <div className="weather-app">
       <header className="topbar">
-        <a className="brand" href="#"><span className="brand-mark">☁</span> Weather AI</a>
-        <span className="topbar-note">Weather forecast & ML prediction</span>
+        <a className="brand" href="#"><span className="brand-mark">☁</span> weather_mobile_app</a>
+        <span className="topbar-note">Weather forecast</span>
       </header>
 
       <main className="page">
         <section className="intro">
           <h1>Weather Forecast</h1>
-          <p>Find current weather and AI-powered predictions for your city.</p>
+          <p>Check current weather and forecast for your city.</p>
         </section>
 
         <section className="search-panel">
@@ -103,7 +103,7 @@ export default function App() {
             </section>
 
             <section className="section-card">
-              <div className="section-title"><div><h2>AI Rain Prediction</h2><p>Machine learning forecast</p></div><span className="tag">ML Prediction</span></div>
+              <div className="section-title"><div><h2>Rain Prediction</h2><p>Weather forecast</p></div><span className="tag">Forecast</span></div>
               <div className="rain-grid">
                 <div className="rain-result"><span className="rain-icon">{weather.rain_prediction === "Yes" ? "🌧️" : "☀️"}</span><div><small>Expected rainfall</small><strong>{weather.rain_prediction === "Yes" ? "Rain expected" : "No rain expected"}</strong></div></div>
                 <div className="rain-result probability"><div><small>Rain probability</small><strong>{rainChance}%</strong></div><div className="bar"><span style={{width: `${rainChance}%`}} /></div></div>
@@ -127,7 +127,7 @@ export default function App() {
         )}
       </main>
 
-      <footer className="footer">Weather AI · Machine Learning Weather Forecast <span>Made by Bhavesh Radiya</span></footer>
+      <footer className="footer">weather_mobile_app · Weather Forecast <span>Made by Bhavesh Radiya</span></footer>
     </div>
   );
 }
