@@ -126,7 +126,12 @@ export default function App() {
         )}
       </main>
 
-      <footer className="footer">Weater_app</footer>
+      <footer className="footer">
+        <strong>Weater_app</strong>
+        <span>Developed by Bhavesh Radiya</span>
+        <span><a href="tel:9904516703">📞 9904516703</a></span>
+        <span><a href="mailto:bhaveshradiya1230@gmail.com">✉️ bhaveshradiya1230@gmail.com</a></span>
+      </footer>
     </div>
   );
 }
