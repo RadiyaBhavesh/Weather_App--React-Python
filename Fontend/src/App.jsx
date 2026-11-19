@@ -126,7 +126,7 @@ export default function App() {
         )}
       </main>
 
-      <footer className="footer">weather_mobile_app</footer>
+      <footer className="footer">Weater_app</footer>
     </div>
   );
 }
