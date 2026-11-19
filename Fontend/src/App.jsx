@@ -48,13 +48,12 @@ export default function App() {
     <div className="weather-app">
       <header className="topbar">
         <a className="brand" href="#"><span className="brand-mark">☁</span> weather_mobile_app</a>
-        <span className="topbar-note">Weather forecast</span>
+        
       </header>
 
       <main className="page">
         <section className="intro">
-          <h1>Weather Forecast</h1>
-          <p>Check current weather and forecast for your city.</p>
+          <h1>Weather</h1>
         </section>
 
         <section className="search-panel">
@@ -79,7 +78,7 @@ export default function App() {
           <section className="empty-state">
             <div className="empty-icon">🌤️</div>
             <h2>Check the weather in your city</h2>
-            <p>Search above to see live conditions, rain prediction and hourly temperature forecast.</p>
+            <p>Search a city to view its weather.</p>
           </section>
         )}
 
@@ -103,7 +102,7 @@ export default function App() {
             </section>
 
             <section className="section-card">
-              <div className="section-title"><div><h2>Rain Prediction</h2><p>Weather forecast</p></div><span className="tag">Forecast</span></div>
+              <div className="section-title"><div><h2>Rain Chance</h2></div></div>
               <div className="rain-grid">
                 <div className="rain-result"><span className="rain-icon">{weather.rain_prediction === "Yes" ? "🌧️" : "☀️"}</span><div><small>Expected rainfall</small><strong>{weather.rain_prediction === "Yes" ? "Rain expected" : "No rain expected"}</strong></div></div>
                 <div className="rain-result probability"><div><small>Rain probability</small><strong>{rainChance}%</strong></div><div className="bar"><span style={{width: `${rainChance}%`}} /></div></div>
@@ -111,7 +110,7 @@ export default function App() {
             </section>
 
             <section className="section-card">
-              <div className="section-title"><div><h2>Next 5 Hours</h2><p>Predicted temperature and humidity</p></div></div>
+              <div className="section-title"><div><h2>Next 5 Hours</h2></div></div>
               <div className="forecast">
                 {(weather.future_temperature || []).map((item, i) => (
                   <article className="forecast-item" key={i}>
@@ -127,7 +126,7 @@ export default function App() {
         )}
       </main>
 
-      <footer className="footer">weather_mobile_app · Weather Forecast <span>Made by Bhavesh Radiya</span></footer>
+      <footer className="footer">weather_mobile_app</footer>
     </div>
   );
 }
