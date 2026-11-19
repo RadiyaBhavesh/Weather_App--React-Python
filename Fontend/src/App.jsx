@@ -78,7 +78,7 @@ export default function App() {
           <section className="empty-state">
             <div className="empty-icon">🌤️</div>
             <h2>Check the weather in your city</h2>
-            <p>Search a city to view its weather.</p>
+            <p></p>
           </section>
         )}
 
