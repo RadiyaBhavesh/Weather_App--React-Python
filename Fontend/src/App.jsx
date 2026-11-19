@@ -47,7 +47,7 @@ export default function App() {
   return (
     <div className="weather-app">
       <header className="topbar">
-        <a className="brand" href="#"><span className="brand-mark">☁</span> weather_mobile_app</a>
+        <a className="brand" href="#"><span className="brand-mark">☁</span> weather_app</a>
         
       </header>
 
