@@ -1,1 +1,506 @@
-*{box-sizing:border-box}html,body,#root{min-height:100%;margin:0}body{font-family:Arial,Helvetica,sans-serif;background:#0b1424;color:#e8f1ff}.weather-app{min-height:100vh}.topbar{height:66px;background:#111e32;border-bottom:1px solid #263a55;padding:0 max(calc((100% - 1060px)/2),5%);display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;color:#68b5ff;text-decoration:none;font-weight:700;font-size:20px}.brand-mark{font-size:25px}.topbar-note{color:#9fb4cd;font-size:13px}.page{max-width:1000px;width:92%;margin:38px auto 55px}.intro{text-align:center;margin-bottom:25px}.intro h1{font-size:30px;margin:0 0 9px;color:#f2f7ff}.intro p{color:#a7b8ce;margin:0;font-size:15px}.search-panel,.section-card,.empty-state{background:#15243a;border:1px solid #2a3e59;border-radius:12px;padding:22px;margin-bottom:20px}.search-row{display:flex;gap:10px}.search-row input{flex:1;min-width:0;padding:13px 14px;border:1px solid #344c69;background:#0f1b2d;color:#edf5ff;border-radius:8px;outline:none;font-size:15px}.search-row input::placeholder{color:#8ca2bd}.search-row input:focus{border-color:#58a9ff;box-shadow:0 0 0 2px #173b63}.search-row button{background:#2585e8;color:#fff;border:0;border-radius:8px;padding:0 24px;cursor:pointer}.search-row button:disabled{opacity:.65}.city-shortcuts{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:15px;color:#9fb3cb;font-size:13px}.city-shortcuts button{border:1px solid #344b67;background:#1b2d45;color:#c5d8ee;padding:7px 11px;border-radius:20px;cursor:pointer}.city-shortcuts button:hover{border-color:#58a9ff;color:#72bcff}.error-message{background:#3a2028;color:#ffb6ae;border:1px solid #6d343c;padding:13px 15px;border-radius:8px;margin-bottom:20px}.loading-message,.empty-state{text-align:center;color:#a9bdd4;padding:32px}.empty-icon{font-size:45px}.empty-state h2{color:#eaf3ff;margin:10px 0}.empty-state p{max-width:520px;margin:0 auto;line-height:1.6}.weather-results{display:grid;gap:18px}.current-card{padding:25px;background:#1a3454;border:1px solid #2c4e72;border-radius:12px}.current-heading{display:flex;justify-content:space-between;align-items:center}.current-heading h2{font-size:23px;margin:0;color:#f1f7ff}.condition{margin:7px 0 0;text-transform:capitalize;color:#b2c5dc}.current-icon{font-size:48px}.temperature{font-size:68px;font-weight:700;color:#73bdff;margin-top:18px;line-height:1}.temperature span{font-size:28px;font-weight:500}.feels{margin:9px 0;color:#b3c6dd}.range{display:flex;gap:18px;margin-top:20px;color:#b6c9df;font-size:14px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.metric{background:#15243a;border:1px solid #2a3e59;border-radius:10px;padding:17px;display:flex;flex-direction:column;gap:7px}.metric-icon{font-size:22px}.metric-label{font-size:13px;color:#a3b6ce}.metric strong{font-size:17px;color:#e7f1ff}.section-card{margin:0;padding:22px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.section-title h2{font-size:20px;margin:0;color:#edf5ff}.section-title p{font-size:13px;color:#9fb4cd;margin:6px 0 0}.tag{background:#1d3856;color:#8bc8ff;padding:7px 10px;border-radius:20px;font-size:12px;white-space:nowrap}.rain-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.rain-result{background:#101d30;border:1px solid #2a3e59;border-radius:9px;padding:18px;display:flex;align-items:center;gap:13px}.rain-icon{font-size:32px}.rain-result small{display:block;color:#9fb4cd;font-size:12px;margin-bottom:7px}.rain-result strong{font-size:20px;color:#e8f2ff}.probability{display:block}.bar{height:8px;border-radius:10px;background:#263c57;overflow:hidden;margin-top:13px}.bar span{display:block;height:100%;border-radius:10px;background:#44a3ff;transition:width .3s}.forecast{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.forecast-item{background:#101d30;border:1px solid #2a3e59;border-radius:9px;padding:17px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}.forecast-time,.forecast-item small{font-size:12px;color:#9fb4cd}.forecast-icon{font-size:26px}.forecast-item strong{font-size:18px;color:#e9f3ff}.footer{border-top:1px solid #263a55;background:#111e32;text-align:center;padding:20px;color:#9fb4cd;font-size:13px}.footer span{display:block;margin-top:6px;color:#c1d2e7}.footer a{color:#c1d2e7;text-decoration:none;display:inline-block}.footer a:hover{color:#78baff;text-decoration:none}@media(max-width:700px){.topbar{padding:0 5%;}.topbar-note{font-size:11px}.page{width:94%;margin:25px auto 35px}.intro h1{font-size:25px}.search-panel{padding:17px}.search-row{flex-direction:column}.search-row button{padding:13px}.metrics{grid-template-columns:repeat(2,1fr)}.rain-grid{grid-template-columns:1fr}.forecast{grid-template-columns:repeat(2,1fr)}.section-title{align-items:flex-start;flex-direction:column}.current-card{padding:20px}.temperature{font-size:58px}}
+/* ==========================================================
+   WEATHER APP STYLES
+   Medium-level CSS: organized sections, responsive layout,
+   and simple hover/focus effects.
+========================================================== */
+
+/* 1. Basic page setup */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b1424;
+  color: #e8f1ff;
+}
+
+.weather-app {
+  min-height: 100vh;
+}
+
+/* 2. Top navigation */
+.topbar {
+  height: 66px;
+  background: #111e32;
+  border-bottom: 1px solid #263a55;
+  padding: 0 max(calc((100% - 1060px) / 2), 5%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #68b5ff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.brand-mark {
+  font-size: 25px;
+}
+
+.topbar-note {
+  color: #9fb4cd;
+  font-size: 13px;
+}
+
+/* 3. Main content and page heading */
+.page {
+  max-width: 1000px;
+  width: 92%;
+  margin: 38px auto 55px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.intro h1 {
+  font-size: 30px;
+  margin: 0 0 9px;
+  color: #f2f7ff;
+}
+
+.intro p {
+  color: #a7b8ce;
+  margin: 0;
+  font-size: 15px;
+}
+
+/* 4. City search panel */
+.search-panel,
+.section-card,
+.empty-state {
+  background: #15243a;
+  border: 1px solid #2a3e59;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+}
+
+.search-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid #344c69;
+  background: #0f1b2d;
+  color: #edf5ff;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+}
+
+.search-row input::placeholder {
+  color: #8ca2bd;
+}
+
+/* Show a clear outline when the input is selected. */
+.search-row input:focus {
+  border-color: #58a9ff;
+  box-shadow: 0 0 0 2px #173b63;
+}
+
+.search-row button {
+  background: #2585e8;
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.search-row button:hover:not(:disabled) {
+  background: #1472d2;
+  transform: translateY(-1px);
+}
+
+.search-row button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Quick buttons for commonly searched cities */
+.city-shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  color: #9fb3cb;
+  font-size: 13px;
+}
+
+.city-shortcuts button {
+  border: 1px solid #344b67;
+  background: #1b2d45;
+  color: #c5d8ee;
+  padding: 7px 11px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.city-shortcuts button:hover:not(:disabled) {
+  border-color: #58a9ff;
+  color: #72bcff;
+}
+
+/* 5. Error, loading and empty messages */
+.error-message {
+  background: #3a2028;
+  color: #ffb6ae;
+  border: 1px solid #6d343c;
+  padding: 13px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.loading-message,
+.empty-state {
+  text-align: center;
+  color: #a9bdd4;
+  padding: 32px;
+}
+
+.empty-icon {
+  font-size: 45px;
+}
+
+.empty-state h2 {
+  color: #eaf3ff;
+  margin: 10px 0;
+}
+
+.empty-state p {
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* 6. Current weather card */
+.weather-results {
+  display: grid;
+  gap: 18px;
+}
+
+.current-card {
+  padding: 25px;
+  background: #1a3454;
+  border: 1px solid #2c4e72;
+  border-radius: 12px;
+}
+
+.current-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.current-heading h2 {
+  font-size: 23px;
+  margin: 0;
+  color: #f1f7ff;
+}
+
+.condition {
+  margin: 7px 0 0;
+  text-transform: capitalize;
+  color: #b2c5dc;
+}
+
+.current-icon {
+  font-size: 48px;
+}
+
+.temperature {
+  font-size: 68px;
+  font-weight: 700;
+  color: #73bdff;
+  margin-top: 18px;
+  line-height: 1;
+}
+
+.temperature span {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.feels {
+  margin: 9px 0;
+  color: #b3c6dd;
+}
+
+.range {
+  display: flex;
+  gap: 18px;
+  margin-top: 20px;
+  color: #b6c9df;
+  font-size: 14px;
+}
+
+/* 7. Weather information cards */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 13px;
+}
+
+.metric {
+  background: #15243a;
+  border: 1px solid #2a3e59;
+  border-radius: 10px;
+  padding: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.metric-icon {
+  font-size: 22px;
+}
+
+.metric-label {
+  font-size: 13px;
+  color: #a3b6ce;
+}
+
+.metric strong {
+  font-size: 17px;
+  color: #e7f1ff;
+}
+
+/* 8. Section heading and rain prediction */
+.section-card {
+  margin: 0;
+  padding: 22px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #edf5ff;
+}
+
+.section-title p {
+  font-size: 13px;
+  color: #9fb4cd;
+  margin: 6px 0 0;
+}
+
+.tag {
+  background: #1d3856;
+  color: #8bc8ff;
+  padding: 7px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.rain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.rain-result {
+  background: #101d30;
+  border: 1px solid #2a3e59;
+  border-radius: 9px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.rain-icon {
+  font-size: 32px;
+}
+
+.rain-result small {
+  display: block;
+  color: #9fb4cd;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.rain-result strong {
+  font-size: 20px;
+  color: #e8f2ff;
+}
+
+.probability {
+  display: block;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 10px;
+  background: #263c57;
+  overflow: hidden;
+  margin-top: 13px;
+}
+
+/* The inner bar width is controlled by the rain percentage in React. */
+.bar span {
+  display: block;
+  height: 100%;
+  border-radius: 10px;
+  background: #44a3ff;
+  transition: width 0.3s ease;
+}
+
+/* 9. Hourly forecast cards */
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.forecast-item {
+  background: #101d30;
+  border: 1px solid #2a3e59;
+  border-radius: 9px;
+  padding: 17px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.forecast-time,
+.forecast-item small {
+  font-size: 12px;
+  color: #9fb4cd;
+}
+
+.forecast-icon {
+  font-size: 26px;
+}
+
+.forecast-item strong {
+  font-size: 18px;
+  color: #e9f3ff;
+}
+
+/* 10. Footer */
+.footer {
+  border-top: 1px solid #263a55;
+  background: #111e32;
+  text-align: center;
+  padding: 20px;
+  color: #9fb4cd;
+  font-size: 13px;
+}
+
+.footer span {
+  display: block;
+  margin-top: 6px;
+  color: #c1d2e7;
+}
+
+.footer a {
+  color: #c1d2e7;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.footer a:hover {
+  color: #78baff;
+}
+
+/* 11. Responsive layout for tablets and phones */
+@media (max-width: 700px) {
+  .topbar {
+    padding: 0 5%;
+  }
+
+  .topbar-note {
+    font-size: 11px;
+  }
+
+  .page {
+    width: 94%;
+    margin: 25px auto 35px;
+  }
+
+  .intro h1 {
+    font-size: 25px;
+  }
+
+  .search-panel {
+    padding: 17px;
+  }
+
+  /* Stack the search input and button on small screens. */
+  .search-row {
+    flex-direction: column;
+  }
+
+  .search-row button {
+    padding: 13px;
+  }
+
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .forecast {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .current-card {
+    padding: 20px;
+  }
+
+  .temperature {
+    font-size: 58px;
+  }
+}
+
+/* 12. Respect the device accessibility setting for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
