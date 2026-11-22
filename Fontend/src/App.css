@@ -504,3 +504,90 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* 13. Search bar polish — wide, aligned and responsive */
+.search-panel {
+  padding: 18px 20px;
+  border-radius: 14px;
+}
+
+.search-row {
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  min-height: 58px;
+  padding: 5px;
+  border: 1px solid #344c69;
+  border-radius: 10px;
+  background: #f1f3f4;
+  overflow: hidden;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.search-row:focus-within {
+  border-color: #58a9ff;
+  box-shadow: 0 0 0 3px rgba(88, 169, 255, .18);
+}
+
+.search-row input {
+  flex: 1 1 auto;
+  width: 0;
+  min-width: 0;
+  height: 48px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #172536;
+  font-size: 17px;
+  box-shadow: none;
+}
+
+.search-row input::placeholder {
+  color: #6d7b89;
+  opacity: 1;
+}
+
+.search-row input:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+.search-row button {
+  flex: 0 0 auto;
+  min-width: 104px;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 7px;
+  background: #2585e8;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.search-row button:hover:not(:disabled) {
+  background: #1472d2;
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .search-panel {
+    padding: 14px;
+  }
+  .search-row {
+    flex-direction: row;
+    gap: 0;
+    min-height: 54px;
+  }
+  .search-row input {
+    height: 44px;
+    padding: 0 10px;
+    font-size: 15px;
+  }
+  .search-row button {
+    min-width: 82px;
+    min-height: 44px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+}
