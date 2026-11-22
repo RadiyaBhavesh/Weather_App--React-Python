@@ -591,3 +591,129 @@ body {
     font-size: 14px;
   }
 }
+
+
+/* 14. College-project UI polish: cohesive glass cards and visual hierarchy */
+body {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(37,133,232,.13), transparent 34%),
+    radial-gradient(ellipse at 88% 18%, rgba(66,185,255,.08), transparent 30%),
+    #091321;
+}
+
+.topbar {
+  background: rgba(15, 27, 44, .92);
+  backdrop-filter: blur(14px);
+  border-bottom-color: rgba(115, 173, 230, .16);
+}
+
+.page {
+  max-width: 1120px;
+  margin-top: 42px;
+}
+
+.intro h1 {
+  font-size: clamp(28px, 4vw, 38px);
+  letter-spacing: -1px;
+}
+
+.search-panel,
+.section-card,
+.empty-state {
+  background: linear-gradient(145deg, rgba(24, 41, 64, .96), rgba(17, 31, 49, .96));
+  border-color: rgba(112, 163, 214, .19);
+  border-radius: 18px;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .16), inset 0 1px rgba(255,255,255,.025);
+}
+
+.search-panel {
+  padding: 20px;
+}
+
+.search-row {
+  border-color: rgba(94, 159, 220, .28);
+  border-radius: 13px;
+  padding: 5px;
+  background: #edf2f7;
+}
+
+.search-row input {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.search-row button {
+  min-width: 112px;
+  border-radius: 9px;
+  box-shadow: 0 5px 14px rgba(37, 133, 232, .24);
+}
+
+.city-shortcuts button {
+  background: rgba(38, 61, 89, .72);
+  border-color: rgba(110, 160, 210, .24);
+  padding: 8px 13px;
+}
+
+.city-shortcuts button:hover:not(:disabled) {
+  background: rgba(38, 89, 138, .34);
+}
+
+.empty-state {
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon {
+  filter: drop-shadow(0 6px 14px rgba(255, 190, 65, .12));
+}
+
+.current-card {
+  background: linear-gradient(135deg, #1b3b5f, #152b45);
+  border-color: rgba(105, 176, 244, .24);
+  border-radius: 18px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, .15);
+}
+
+.metric,
+.rain-result,
+.forecast-item {
+  border-color: rgba(112, 163, 214, .16);
+  border-radius: 14px;
+  background: rgba(15, 29, 47, .78);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+
+.metric:hover,
+.rain-result:hover,
+.forecast-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(88, 169, 255, .4);
+  box-shadow: 0 10px 24px rgba(0,0,0,.14);
+}
+
+.section-card {
+  padding: 24px;
+}
+
+.footer {
+  background: rgba(15, 27, 44, .92);
+  border-top-color: rgba(115, 173, 230, .16);
+}
+
+@media (max-width: 700px) {
+  .page {
+    margin-top: 26px;
+  }
+  .search-panel {
+    padding: 14px;
+  }
+  .section-card {
+    padding: 17px;
+  }
+  .current-card {
+    border-radius: 15px;
+  }
+}
