@@ -77,7 +77,7 @@ export default function App() {
       <main className="page">
         {/* Page heading */}
         <section className="intro">
-          <h1>Weather</h1>
+          <h1 className="page-title"><img className="page-title-logo" src="/weather-logo.svg" alt="" /><span>Weather</span></h1>
         </section>
 
         {/* Search input and quick city shortcuts */}
