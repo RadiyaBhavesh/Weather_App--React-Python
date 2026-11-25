@@ -70,7 +70,7 @@ export default function App() {
       {/* App name and top navigation */}
       <header className="topbar">
         <a className="brand" href="#">
-          <span className="brand-mark">☁</span> weather_app
+          <img className="brand-logo" src="/weather-logo.svg" alt="" /> <span>weather_app</span>
         </a>
       </header>
 
