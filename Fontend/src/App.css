@@ -727,3 +727,27 @@ body {
   flex: 0 0 38px;
   filter: drop-shadow(0 4px 10px rgba(57, 161, 255, .22));
 }
+
+
+/* Logo beside the main Weather page title */
+.intro h1.page-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.page-title-logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(57, 161, 255, .2));
+}
+@media (max-width: 700px) {
+  .page-title-logo {
+    width: 34px;
+    height: 34px;
+  }
+  .intro h1.page-title {
+    gap: 9px;
+  }
+}
